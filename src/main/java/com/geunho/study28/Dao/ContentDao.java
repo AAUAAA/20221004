@@ -6,14 +6,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 
 import com.geunho.study28.Dto.ContentDto;
 
 
 public class ContentDao implements IDao {
 
+	
 	JdbcTemplate template;
 
 	@Autowired
@@ -22,8 +25,22 @@ public class ContentDao implements IDao {
 	}
 
 	@Override
-	public void deleteDao(String mid) {
+	public void deleteDao(final String mid) {
 		// TODO Auto-generated method stub
+		
+		String sql="DELETE FROM board WHERE mid=?";
+		
+		this.template.update(sql, new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+				
+				pstmt.setString(1, mid);
+				
+				
+			}}
+		);
 		
 	}
 
@@ -50,6 +67,11 @@ public class ContentDao implements IDao {
 	@Override
 	public ArrayList<ContentDto> listDao() {
 		// TODO Auto-generated method stub
+		
+		String sql = "SELECT * FROM board ORDER BY mid DESC";
+		
+		ArrayList<ContentDto> dtos = (ArrayList<ContentDto>) template.query(sql, new BeanPropertyRowMapper(ContentDto.class));
+		
 		return null;
 	}
 

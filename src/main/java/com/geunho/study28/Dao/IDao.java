@@ -9,5 +9,6 @@ public interface IDao {
 	public void deleteDao(String mid);
 	public void writeDao(String mwriter, String mcontent);
 	public ArrayList<ContentDto> listDao();
+	public void modifyDao(String mwriter, String mcontent);
 
 }

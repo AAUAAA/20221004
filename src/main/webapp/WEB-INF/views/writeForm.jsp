@@ -11,9 +11,9 @@
 	<hr>
 	<table border="1" cellpadding="0" cellspacing="0" width="1000">
 		<form action="write">
-			<tr height="40">
+			<tr height="40" >
 				<th bgcolor="skyblue">글쓴이</th>
-				<td><input type="text" name="mwrite" size="60"></td>
+				<td><input type="text" name="mwriter" size="60"></td>
 			</tr>
 			<tr height="50">
 				<th bgcolor="skyblue">한줄쓰기</th>

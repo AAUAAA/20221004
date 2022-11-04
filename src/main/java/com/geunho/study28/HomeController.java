@@ -1,6 +1,7 @@
 package com.geunho.study28;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.geunho.study28.Dao.ContentDao;
+import com.geunho.study28.Dto.ContentDto;
 
 /**
  * Handles requests for the application home page.
@@ -33,11 +35,15 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		
-		return "list";
+		return "redirect:list";
 	}
 	
 	@RequestMapping(value = "list")
-	public String list() {
+	public String list(Model model) {
+		
+		ArrayList<ContentDto> dtos = dao.listDao();
+		
+		model.addAttribute("list", dtos);
 		
 		
 		
@@ -50,7 +56,7 @@ public class HomeController {
 		return "writeForm";
 	}
 	
-	@RequestMapping(value = "write")
+	@RequestMapping(value = "write")	
 	public String write(HttpServletRequest request) {
 		
 		
@@ -64,8 +70,15 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "delete")
-	public String delete() {
+	public String delete(HttpServletRequest request) {
+		
+		String mid = request.getParameter("mid");
+		
+		dao.deleteDao(mid);
+			
 		return "redirect:list";
 	}
+	
+	
 	
 }

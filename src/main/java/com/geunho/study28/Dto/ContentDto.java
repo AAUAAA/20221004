@@ -4,7 +4,7 @@ public class ContentDto {
 	
 	private int mid;
 	private String mwriter;
-	private String mcount;
+	private String mcontent;
 	
 	
 	public ContentDto() {
@@ -28,19 +28,19 @@ public class ContentDto {
 		this.mwriter = mwriter;
 	}
 
-	public String getMcount() {
-		return mcount;
+	public String getMcontent() {
+		return mcontent;
 	}
 
-	public void setMcount(String mcount) {
-		this.mcount = mcount;
+	public void setMcontent(String mcontent) {
+		this.mcontent = mcontent;
 	}
 
-	public ContentDto(int mid, String mwriter, String mcount) {
+	public ContentDto(int mid, String mwriter, String mcontent) {
 		super();
 		this.mid = mid;
 		this.mwriter = mwriter;
-		this.mcount = mcount;
+		this.mcontent = mcontent;
 	}
 
 
